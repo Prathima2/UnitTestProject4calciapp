@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject4calciapp", "UnitTestProject4calciapp\UnitTestProject4calciapp.csproj", "{59A6EDB3-8F93-4E2D-8657-7AF594F0F21B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59A6EDB3-8F93-4E2D-8657-7AF594F0F21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A6EDB3-8F93-4E2D-8657-7AF594F0F21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A6EDB3-8F93-4E2D-8657-7AF594F0F21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A6EDB3-8F93-4E2D-8657-7AF594F0F21B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F8A3331-EEA8-4245-8254-82098C017E71}
+	EndGlobalSection
+EndGlobal
