@@ -6,30 +6,58 @@
 trigger:
 - master
 
-pool:
-  name: Default
-  demands:
-  - agent.name -equals LAPTOP-LR6RQ93I
+stages:
+  - stage: Build
+    jobs:
+      - job: PrintMessage
+        pool:
+          name: Default
+          demands: 
+          - agent.name -equals LAPTOP-LR6RQ93I
+        steps:
+          - script: echo '****************'
+          - script: echo 'starting with test'
+          - script: echo '*****************'
+           
+      - job: Build
+        pool:
+         name: Default
+         demands: mycap
 
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+        variables:
+           solution: '**/*.sln'
+           buildPlatform: 'Any CPU'
+           buildConfiguration: 'Release'
+ 
+        steps:
+        - task:  NuGetToolInstaller@1
+        - task: NuGetCommand@2
+          inputs:
+            restoreSolution: '$(solution)'
+        - task: VSBuild@1
+          inputs:
+           solution: '$(solution)'
+           platform: '$(buildPlatform)'
+           configuration: '$(buildConfiguration)'
 
-steps:
-- task: NuGetToolInstaller@1
+        - script: echo 'Building application'
+        
+  - stage: Test
+    jobs:
+       - job: Test
+         pool:
+          name: Default
+          demands: mycap1
+        
+         variables:
+           solution: '**/*.sln'
+           buildPlatform: 'Any CPU'
+           buildConfiguration: 'Release'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+         steps:
+           - task: VSTest@2
+             inputs:
+              platform: '$(buildPlatform)'
+              configuration: '$(buildConfiguration)'
+           - script: echo 'Testing application'
+  
